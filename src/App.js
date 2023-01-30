@@ -1,7 +1,7 @@
 import "./App.css";
 
 function Button({ number }) {
-  return <button>{number}</button>;
+  return <button onClick={() => alert(number)}>{number}</button>;
 }
 
 function App() {
