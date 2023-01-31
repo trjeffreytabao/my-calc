@@ -14,7 +14,8 @@ function Display({ value }) {
 }
 
 function App() {
-  const [num1, setNum1] = useState(" ");
+  const [num1, setNum1] = useState(null);
+  const [num2, setNum2] = useState(" ");
   const [operator, setOperator] = useState(" ");
   const [display, setDisplay] = useState(" ");
   const [IsClick, setIsClick] = useState(false);
@@ -27,41 +28,66 @@ function App() {
 
   const numberClickHandler = (e) => {
     e.preventDefault();
-    const value = e.target.innerHTML;
-    setDisplay(value);
-    let old = display;
-    setDisplay(old + e.target.innerHTML);
+    if (display === " ") {
+      const value = e.target.innerHTML;
+      setDisplay(value);
+    } else {
+      if (
+        display === "+" ||
+        display === "/" ||
+        display === "*" ||
+        display === "-" ||
+        display === "0"
+      ) {
+        const value = e.target.innerHTML;
+        setDisplay(value);
+      } else {
+        let old = display;
+        setDisplay(old + e.target.innerHTML);
+      }
+    }
   };
 
   const equal = (e) => {
     e.preventDefault();
-    if (operator === "+") {
-      let equal = parseInt(num1) + parseInt(display);
-      setDisplay(equal);
-      setIsClick(false);
-    } else if (operator === "*") {
-      let equal = parseInt(num1) * parseInt(display);
-      setDisplay(equal);
-      setIsClick(false);
-    } else if (operator === "/") {
-      let equal = parseInt(num1) / parseInt(display);
-      setDisplay(equal);
-      setIsClick(false);
-    } else if (operator === "-") {
-      let equal = parseInt(num1) - parseInt(display);
-      setDisplay(equal);
-      setIsClick(false);
+    let number1 = parseFloat(num1);
+    let number2 = parseFloat(display);
+    if (
+      display === "+" ||
+      display === "/" ||
+      display === "*" ||
+      display === "-"
+    ) {
+    } else {
+      if (operator === "+") {
+        let equal = number1 + number2;
+        setDisplay(equal);
+      } else if (operator === "*") {
+        let equal = parseInt(num1) * parseInt(display);
+        setDisplay(equal);
+      } else if (operator === "/") {
+        let equal = parseInt(num1) / parseInt(display);
+        setDisplay(equal);
+      } else if (operator === "-") {
+        let equal = parseInt(num1) - parseInt(display);
+        setDisplay(equal);
+      }
     }
   };
 
   const ClickOperator = (e) => {
-    if (!IsClick) {
-      e.preventDefault();
-      const value = e.target.innerHTML;
-      setOperator(value);
+    e.preventDefault();
+    const value = e.target.innerHTML;
+    setOperator(value);
+    setDisplay(value);
+    if (
+      display === "+" ||
+      display === "/" ||
+      display === "*" ||
+      display === "-"
+    ) {
+    } else {
       setNum1(display);
-      setDisplay(" ");
-      setIsClick(true);
     }
   };
 
@@ -72,6 +98,7 @@ function App() {
           <div class="output_screen">
             <Display value={display} />
             {/* <Display value={num1} />
+            <Display value={num2} />
             <Display value={operator} /> */}
           </div>
         </div>
@@ -89,7 +116,7 @@ function App() {
           <Button number={3} onClick={numberClickHandler} />
           <Button number={"-"} onClick={ClickOperator} />
           <Button number={"CLR"} onClick={ClearValue} />
-          <Button number={0} onClick={numberClickHandler} />
+          <Button number={"0"} onClick={numberClickHandler} />
           <Button number={"="} onClick={equal} />
           <Button number={"+"} onClick={ClickOperator} />
         </div>
@@ -98,22 +125,3 @@ function App() {
   );
 }
 export default App;
-
-/*
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-    */
