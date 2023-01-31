@@ -28,22 +28,29 @@ function App() {
 
   const numberClickHandler = (e) => {
     e.preventDefault();
-    if (display === " ") {
+    if (IsClick === true) {
+      setIsClick(false);
+      setDisplay(" ");
       const value = e.target.innerHTML;
       setDisplay(value);
     } else {
-      if (
-        display === "+" ||
-        display === "/" ||
-        display === "*" ||
-        display === "-" ||
-        display === "0"
-      ) {
+      if (display === " ") {
         const value = e.target.innerHTML;
         setDisplay(value);
       } else {
-        let old = display;
-        setDisplay(old + e.target.innerHTML);
+        if (
+          display === "+" ||
+          display === "/" ||
+          display === "*" ||
+          display === "-" ||
+          display === "0"
+        ) {
+          const value = e.target.innerHTML;
+          setDisplay(value);
+        } else {
+          let old = display;
+          setDisplay(old + e.target.innerHTML);
+        }
       }
     }
   };
@@ -62,15 +69,27 @@ function App() {
       if (operator === "+") {
         let equal = number1 + number2;
         setDisplay(equal);
+        setNum1(" ");
+        setOperator(" ");
+        setIsClick(true);
       } else if (operator === "*") {
         let equal = parseInt(num1) * parseInt(display);
         setDisplay(equal);
+        setNum1(" ");
+        setOperator(" ");
+        setIsClick(true);
       } else if (operator === "/") {
         let equal = parseInt(num1) / parseInt(display);
         setDisplay(equal);
+        setNum1(" ");
+        setOperator(" ");
+        setIsClick(true);
       } else if (operator === "-") {
         let equal = parseInt(num1) - parseInt(display);
         setDisplay(equal);
+        setNum1(" ");
+        setOperator(" ");
+        setIsClick(true);
       }
     }
   };
