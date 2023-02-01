@@ -7,7 +7,7 @@ function Button({ number = "?", onClick }) {
 
 function Display({ value }) {
   return (
-    <div class="container-input_answer">
+    <div className="container-input_answer">
       <input value={value}></input>
     </div>
   );
@@ -15,7 +15,6 @@ function Display({ value }) {
 
 function App() {
   const [num1, setNum1] = useState(null);
-  const [num2, setNum2] = useState(" ");
   const [operator, setOperator] = useState(" ");
   const [display, setDisplay] = useState(" ");
   const [IsClick, setIsClick] = useState(false);
@@ -66,31 +65,20 @@ function App() {
       display === "-"
     ) {
     } else {
+      let equal;
       if (operator === "+") {
-        let equal = number1 + number2;
-        setDisplay(equal);
-        setNum1(" ");
-        setOperator(" ");
-        setIsClick(true);
+        equal = number1 + number2;
       } else if (operator === "*") {
-        let equal = parseInt(num1) * parseInt(display);
-        setDisplay(equal);
-        setNum1(" ");
-        setOperator(" ");
-        setIsClick(true);
+        equal = parseFloat(num1) * parseFloat(display);
       } else if (operator === "/") {
-        let equal = parseInt(num1) / parseInt(display);
-        setDisplay(equal);
-        setNum1(" ");
-        setOperator(" ");
-        setIsClick(true);
+        equal = parseFloat(num1) / parseFloat(display);
       } else if (operator === "-") {
-        let equal = parseInt(num1) - parseInt(display);
-        setDisplay(equal);
-        setNum1(" ");
-        setOperator(" ");
-        setIsClick(true);
+        equal = parseFloat(num1) - parseFloat(display);
       }
+      setDisplay(equal);
+      setNum1(" ");
+      setOperator(" ");
+      setIsClick(true);
     }
   };
 
@@ -111,17 +99,16 @@ function App() {
   };
 
   return (
-    <div class="container">
-      <div class="container-calc">
-        <div class="container-screen-calc">
-          <div class="output_screen">
+    <div className="container">
+      <div className="container-calc">
+        <div className="container-screen-calc">
+          <div className="output_screen">
             <Display value={display} />
             {/* <Display value={num1} />
-            <Display value={num2} />
             <Display value={operator} /> */}
           </div>
         </div>
-        <div class="container-buttons-calc">
+        <div className="container-buttons-calc">
           <Button number={7} onClick={numberClickHandler} />
           <Button number={8} onClick={numberClickHandler} />
           <Button number={9} onClick={numberClickHandler} />
