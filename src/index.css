@@ -59,7 +59,7 @@ code {
   /* background-color: rgb(255, 255, 255); */
 }
 
-button {
+.calcbtn {
   background-color: rgb(122, 113, 113);
   border-radius: 10%;
   box-shadow: 5px 5px 5px rgb(104, 103, 103);
@@ -67,8 +67,8 @@ button {
   height: 100px;
   font-size: 40px;
 }
-button:hover {
-  background-color: rgb(145, 86, 86);
+.calcbtn:hover {
+  background-color: rgb(211, 149, 149);
 }
 
 input {
@@ -77,4 +77,15 @@ input {
   height: 95px;
   font-size: 100px;
   background-color: rgb(134, 98, 98);
+}
+.clearbtn {
+  border-radius: 10%;
+  box-shadow: 5px 5px 5px rgb(104, 103, 103);
+  width: 95px;
+  height: 100px;
+  font-size: 40px;
+  background-color: rgb(145, 86, 86);
+}
+.clearbtn:hover {
+  background-color: rgb(228, 17, 17);
 }

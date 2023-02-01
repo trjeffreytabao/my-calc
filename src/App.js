@@ -2,7 +2,18 @@ import "./App.css";
 import { useState } from "react";
 
 function Button({ number = "?", onClick }) {
-  return <button onClick={onClick}>{number}</button>;
+  return (
+    <button className={"calcbtn"} onClick={onClick}>
+      {number}
+    </button>
+  );
+}
+function RedButton({ number = "?", onClick }) {
+  return (
+    <button className={"clearbtn"} onClick={onClick}>
+      {number}
+    </button>
+  );
 }
 
 function Display({ value }) {
@@ -121,7 +132,7 @@ function App() {
           <Button number={2} onClick={numberClickHandler} />
           <Button number={3} onClick={numberClickHandler} />
           <Button number={"-"} onClick={ClickOperator} />
-          <Button number={"CLR"} onClick={ClearValue} />
+          <RedButton number={"CLR"} onClick={ClearValue} />
           <Button number={"0"} onClick={numberClickHandler} />
           <Button number={"="} onClick={equal} />
           <Button number={"+"} onClick={ClickOperator} />
